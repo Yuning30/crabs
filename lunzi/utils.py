@@ -1,5 +1,5 @@
 from typing import DefaultDict, Union, Callable, Dict
-from collections import Collection, Mapping
+from collections.abc import Collection, Mapping
 import numpy as np
 import hashlib
 

@@ -135,7 +135,7 @@ class WandbRun:
 class Store:
     def __init__(self):
         self._cache = {}
-        self.verbose = False
+        self.verbose = True
 
     def clear(self):
         self._cache = {}
@@ -154,6 +154,8 @@ class Store:
         ret = []
         for root_dir in root_dirs:
             root_dir = Path(root_dir).expanduser()
+            import pdb
+            pdb.set_trace()
             for filename in root_dir.glob('**/*.wandb'):
                 try:
                     ret.append(self.run(filename, reload=reload))

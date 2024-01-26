@@ -1,6 +1,6 @@
 from . import classic_pendulum
 from . import inverted_pendulum
-
+from . import acc
 
 import lunzi as lz
 import gym
@@ -14,6 +14,8 @@ class FLAGS(lz.BaseFLAGS):
 
 @FLAGS.set_defaults
 def make_env(*, id, config):
+    # import pdb
+    # pdb.set_trace()
     import rlz.wrappers as w
 
     env = gym.make(id, **config)

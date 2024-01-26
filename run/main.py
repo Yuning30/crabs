@@ -126,6 +126,8 @@ class Barrier(nn.Module):
         self.ell = softplus
 
     def forward(self, states: torch.Tensor) -> torch.Tensor:
+        # import pdb
+        # pdb.set_trace()
         # return self.net(state) + self.barrier_fn(state) - self.net(self.s0) + self.barrier_fn(self.s0) - self.offset
         return self.ell(self.net(states) - self.net(self.s0[None])) * self.FLAGS.ell_coef \
                + self.env_barrier_fn(states) * self.FLAGS.barrier_coef - 1
@@ -435,7 +437,7 @@ def evaluate(step, runner, policy, tag, *, n_eval_samples):
             lz.log.info(f'# {step}, tag = {tag}, {key} = {mean:.6f} ± {std:.6f} over {len(value)} episodes.')
         wandb.log({
             'step': step,
-            'n_episodes': self.,
+            'n_episodes': step,
             f'{tag}.{key}.mean': mean,
             f'{tag}.{key}.std': std,
             f'{tag}.{key}.n': len(value),
@@ -697,6 +699,8 @@ class Crabs:
             lz.log.warning(f"models are frozen!")
 
         # policy optimization
+        import pdb
+        pdb.set_trace()
         self.load_from_ckpt()
 
         self.core_ref = deepcopy(self.core)
@@ -812,6 +816,8 @@ class Crabs:
         self.save("init_h.pt")
 
     def train_models(self, *, epochs):
+        # import pdb
+        # pdb.set_trace()
         self.model_trainer.max_epochs += epochs
         self.model_trainer.fit(
             self.model,
